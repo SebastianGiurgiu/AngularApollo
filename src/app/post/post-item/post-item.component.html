@@ -1,0 +1,23 @@
+<div class="container">
+  <ng-container *ngIf="post">
+    <mat-form-field>
+      <mat-label>ID</mat-label>
+      <input matInput [(ngModel)]="post.id" disabled>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput [(ngModel)]="post.title" disabled>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Body</mat-label>
+      <textarea matInput [(ngModel)]="post.body" disabled rows="5"></textarea>
+    </mat-form-field>
+  </ng-container>
+
+  <div class="button-container">
+    <button mat-raised-button color="primary" (click)="onClick()">Back</button>
+  </div>
+  
+</div>

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { Store, select } from '@ngrx/store';
@@ -7,6 +7,7 @@ import { IPost } from 'src/models/interfaces';
 import { addPost, deletePost, loadPosts, updatePost } from 'src/store/actions';
 import { selectPostState } from 'src/store/selectors';
 import { PostModalComponent } from '../post-modal/post-modal.component';
+import { Router } from '@angular/router';
 
 const DIALOG_WIDTH = '1000px';
 const DIALOG_HEIGHT = '500px';
@@ -24,7 +25,7 @@ export class PostListComponent implements AfterViewInit {
   totalPosts = 0;
   totalPages = 0;
 
-  constructor(private store: Store, private dialog: MatDialog) { }
+  constructor(private store: Store, private router: Router, private dialog: MatDialog, private cdr: ChangeDetectorRef) { }
 
   // Function to load the posts
   loadPosts() {
@@ -43,6 +44,7 @@ export class PostListComponent implements AfterViewInit {
         this.posts = this.filteredPosts = state.posts; // Initialize both posts and filteredPosts arrays
         this.totalPosts = state.length;
         this.totalPages = Math.ceil(this.totalPosts / this.limit);
+        this.cdr.detectChanges();
       });
   }
 
@@ -74,11 +76,7 @@ export class PostListComponent implements AfterViewInit {
 
   // Function to open a dialog and view a post's details
   onViewPost(post: IPost) {
-    this.dialog.open(PostModalComponent, {
-      width: DIALOG_WIDTH,
-      height: DIALOG_HEIGHT,
-      data: { post }
-    });
+    this.router.navigate(['/posts', post.id]);
   }
 
   // Function to delete a post

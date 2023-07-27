@@ -11,3 +11,13 @@ export const loadPostsSuccess = createAction(
   '[Post] Load Posts Success',
   props<{ posts: IPost[], length: number }>()
 );
+
+export const loadPost = createAction(
+  '[Post] Load Post',
+  props<{ postId: number }>()
+);
+
+export const loadPostSuccess = createAction(
+  '[Post] Load Post Success',
+  props<{ post: IPost}>()
+);

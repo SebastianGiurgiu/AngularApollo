@@ -7,9 +7,11 @@ export interface IPost {
   export interface IPostState {
     posts: IPost[];
     length: number;
+    currentPost: IPost | null;
   }
   
   export const initialState: IPostState = {
     posts: [],
-    length: 0
+    length: 0,
+    currentPost: null
   };

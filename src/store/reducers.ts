@@ -1,11 +1,12 @@
 import { createReducer, on } from "@ngrx/store";
 
 import { IPostState } from "../models/interfaces";
-import { addPostSuccess, deletePost, loadPostsSuccess, updatePostSuccess } from "./actions";
+import { addPostSuccess, deletePost, loadPostSuccess, loadPostsSuccess, updatePostSuccess } from "./actions";
 
 export const initialState: IPostState = {
     posts: [],
-    length: 0
+    length: 0,
+    currentPost: null
 };
 
 export const postReducer = createReducer(
@@ -13,6 +14,9 @@ export const postReducer = createReducer(
     // Reducer for handling the successful loading of posts
     on(loadPostsSuccess, (state, { posts, length }) => ({ ...state, length, posts })),
   
+    on(loadPostSuccess, (state, { post }) =>  { 
+      return ({ ...state, currentPost:  post }) }),
+
     // Reducer for handling the successful addition of a new post
     on(addPostSuccess, (state, { newPost }) =>  { 
       return ({ ...state, posts: [...state.posts, newPost], length: state.length + 1 }) }),
