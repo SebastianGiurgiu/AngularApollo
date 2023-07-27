@@ -32,9 +32,7 @@ export class AddPostEffects {
             }
           })
       }),
-      map((result) => {  console.log((result.data as any).createPost); 
-        return addPostSuccess({newPost: (result.data as any).createPost}) 
-      }),
+      map((result) => addPostSuccess({newPost: (result.data as any).createPost})),
       catchError((error) => of(updatePostFailure(error?.message)))
     )
   )

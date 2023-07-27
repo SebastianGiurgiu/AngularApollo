@@ -40,7 +40,6 @@ export class PostListComponent implements AfterViewInit {
       .pipe(
         select(selectPostState))
       .subscribe(state => {
-        console.log({ state })
         this.posts = this.filteredPosts = state.posts; // Initialize both posts and filteredPosts arrays
         this.totalPosts = state.length;
         this.totalPages = Math.ceil(this.totalPosts / this.limit);

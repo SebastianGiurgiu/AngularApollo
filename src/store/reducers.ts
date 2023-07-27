@@ -15,7 +15,6 @@ export const postReducer = createReducer(
   
     // Reducer for handling the successful addition of a new post
     on(addPostSuccess, (state, { newPost }) =>  { 
-      console.log({newPost}); // Logging the newly added post for debugging purposes
       return ({ ...state, posts: [...state.posts, newPost], length: state.length + 1 }) }),
   
     // Reducer for handling the deletion of a post
