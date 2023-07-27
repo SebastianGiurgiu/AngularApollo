@@ -1,5 +1,5 @@
-import { PostState } from "./interfaces";
+import { IPostState } from "../models/interfaces";
 
 export interface AppState {
-  posts: PostState;
+  posts: IPostState;
 }

@@ -1,0 +1,25 @@
+.search-container, .add-button {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px;
+  }
+  
+  table {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    margin-right: 8px;
+  }
+  
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+  }
+  
+  .btn-add {
+    margin-top: 16px;
+  }

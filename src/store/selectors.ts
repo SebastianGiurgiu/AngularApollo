@@ -1,6 +1,5 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AppState } from './state';
-import { PostState } from './interfaces';
+import { createFeatureSelector } from '@ngrx/store';
 
-// Creează un selector pentru a obține starea postărilor
-export const selectPostState = createFeatureSelector<PostState>('posts');
+import { IPostState } from '../models/interfaces';
+
+export const selectPostState = createFeatureSelector<IPostState>('posts');

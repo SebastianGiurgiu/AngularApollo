@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Post Details</h2>
+<ng-container *ngIf="formData">
+    <mat-dialog-content class="dialog-content">
+        <mat-form-field>
+          <mat-label>ID</mat-label>
+          <input matInput [(ngModel)]="formData.id" disabled>
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <input matInput [(ngModel)]="formData.title" [disabled]="!data.isEditable">
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-label>Body</mat-label>
+          <textarea matInput [(ngModel)]="formData.body" [disabled]="!data.isEditable" rows="5"></textarea>
+        </mat-form-field>
+      </mat-dialog-content>
+      
+      <mat-dialog-actions class="dialog-actions">
+        <ng-container *ngIf="data.isEditable">
+          <button mat-button (click)="onSave()">Save</button>
+        </ng-container>
+        <button mat-button (click)="onCancel()">Close</button>
+      </mat-dialog-actions>
+</ng-container>

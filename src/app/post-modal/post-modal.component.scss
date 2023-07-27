@@ -1,0 +1,14 @@
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .dialog-actions {
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+}  

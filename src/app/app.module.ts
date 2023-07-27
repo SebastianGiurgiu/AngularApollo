@@ -1,40 +1,39 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { InMemoryCache } from '@apollo/client/core';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
-import { HttpClientModule } from '@angular/common/http';
-import { InMemoryCache } from '@apollo/client/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Importă BrowserAnimationsModule pentru animații
-import { MatTableModule } from '@angular/material/table'; // Importă MatTableModule pentru tabel
-import { MatPaginatorModule } from '@angular/material/paginator'; // Importă MatPaginatorModule pentru paginare
-import { MatSortModule } from '@angular/material/sort'; // Importă MatSortModule pentru sortare
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
+
+import { AddPostEffects, DeletePostEffects, LoadPostEffects, UpdatePostEffects } from 'src/store/effects';
 import { postReducer } from 'src/store/reducers';
-import { PostEffects } from 'src/store/effects';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { PostListComponent } from './post-list/post-list.component';
+import { PostModalComponent } from './post-modal/post-modal.component';
+import { MaterialComponentsModule } from 'src/modules/mat-modules';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PostModalComponent,
+    PostListComponent,
   ],
   imports: [
     BrowserModule,
     ApolloModule,
     HttpClientModule,
-    BrowserAnimationsModule, // Adaugă BrowserAnimationsModule în imports
-    MatTableModule, // Adaugă MatTableModule în imports
-    MatPaginatorModule, // Adaugă MatPaginatorModule în imports
-    MatSortModule, // Adaugă MatSortModule în imports
-    MatFormFieldModule,
-    MatInputModule,
+    BrowserAnimationsModule, 
     AppRoutingModule,
+    FormsModule,
+    MaterialComponentsModule,
     StoreModule.forRoot({ posts: postReducer }),
-    EffectsModule.forRoot([PostEffects])
+    EffectsModule.forRoot([AddPostEffects, DeletePostEffects, UpdatePostEffects, LoadPostEffects])
   ],
   providers: [
     {
